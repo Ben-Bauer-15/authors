@@ -336,7 +336,8 @@ var EditComponent = /** @class */ (function () {
         this._route.params.subscribe(function (params) {
             var author = _this._httpService.getAuthorById(params['id']);
             author.subscribe(function (data) {
-                self.currentAuthor = data[data][0];
+                console.log(data.data[0]);
+                self.currentAuthor = data.data[0];
             });
         });
     };
@@ -344,9 +345,9 @@ var EditComponent = /** @class */ (function () {
         var _this = this;
         var updatedAuthor = this._httpService.updateAuthor(this.currentAuthor);
         updatedAuthor.subscribe(function (data) {
-            if (data[message] == "Failure") {
+            if (data.message == "Failure") {
                 _this._ngFlash.showFlashMessage({
-                    messages: [data[data][name]]
+                    messages: [data.data.name]
                 });
             }
             else {
