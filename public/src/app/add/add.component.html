@@ -1,0 +1,10 @@
+<a [routerLink] = "['/home']">Home</a>
+
+<h3>Add an author</h3>
+
+<form (submit) = 'onSubmit()'>
+  <ng-flash-message></ng-flash-message>
+  Name: <input [(ngModel)] = 'authorName' type = 'text' name = 'name'>
+  <input type = 'submit' value = 'Submit'>
+</form>
+<button [routerLink] = "['/home']">Cancel</button>
