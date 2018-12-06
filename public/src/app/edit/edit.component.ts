@@ -18,7 +18,7 @@ export class EditComponent implements OnInit {
     this._route.params.subscribe((params : Params) => {
       let author = this._httpService.getAuthorById(params['id'])
       author.subscribe(data => {
-        self.currentAuthor = data.data[0]
+        self.currentAuthor = data[data][0]
       })
     })
   }
@@ -26,9 +26,9 @@ export class EditComponent implements OnInit {
   onSubmit(){
     let updatedAuthor = this._httpService.updateAuthor(this.currentAuthor)
     updatedAuthor.subscribe(data => {
-      if (data.message == "Failure"){
+      if (data[message] == "Failure"){
         this._ngFlash.showFlashMessage({
-          messages : [data.data.name]
+          messages : [data[data][name]]
         })
       }
       else {
