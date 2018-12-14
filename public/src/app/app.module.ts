@@ -10,13 +10,15 @@ import { EditComponent } from './edit/edit.component';
 import { HttpService } from "./http.service";
 import { HttpClientModule } from "@angular/common/http";
 import { NgFlashMessagesModule } from "ng-flash-messages";
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AddComponent,
-    EditComponent
+    EditComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

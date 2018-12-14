@@ -8,23 +8,28 @@ export class HttpService {
 
   constructor(private _http : HttpClient) { }
 
-  getAllAuthors(){
-    return this._http.get('/authors')
+  getAllMovies(){
+    return this._http.get('/allMovies')
   }
 
-  getAuthorById(id){
-    return this._http.get('/getAuthor/' + id)
+  getMovieById(id){
+    return this._http.get('/movie/' + id)
   }
 
-  updateAuthor(obj){
-    return this._http.post('/update', obj)
+  addReview(obj){
+    return this._http.post('/newReview', obj)
   }
 
-  deleteAuthor(id){
-    return this._http.get('/delete/' + id)
+
+  deleteMovie(id){
+    return this._http.get('/delete/movie/' + id)
   }
 
-  addAuthor(obj){
-    return this._http.post('/new', obj)
+  deleteReview(review_id, movie_id){
+    return this._http.get('/delete/review/' + review_id + '/' + movie_id)
+  }
+
+  addMovie(obj){
+    return this._http.post('/newMovie', obj)
   }
 }

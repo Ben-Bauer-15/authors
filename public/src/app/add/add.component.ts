@@ -2,33 +2,42 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from "../http.service";
 import { Router } from '@angular/router'
 import { NgFlashMessageService } from "ng-flash-messages";
+import { HomeComponent } from "../home/home.component";
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-  authorName;
+  newMovie
 
-  constructor(private _httpService : HttpService, private _router : Router, private _ngFlash : NgFlashMessageService) { }
+  constructor(private _httpService : HttpService, private _router : Router, private _ngFlash : NgFlashMessageService, private _home : HomeComponent) { }
 
   ngOnInit() {
-    this.authorName = ""
+    this.newMovie = {title : "", name : "", review : "", stars : ""}
   }
 
   onSubmit(){
-    let newAuthor = this._httpService.addAuthor({name : this.authorName})
-    newAuthor.subscribe(data => {
+    
+    let newMovie = this._httpService.addMovie(this.newMovie)
+    newMovie.subscribe(data => {
       if (data.message == "Failure"){
+        console.log(data)
         this._ngFlash.showFlashMessage({
-          messages : [data.data.name]
+          messages : [data.data.name, data.data.title, data.data.stars, data.data.review]
         })
-        console.log(data.data)
       }
       else {
-        this._router.navigate(['/home'])
+          this._home.addClicked = false
+          this._home.allMovies.push(data.data)
       }
+        
     })
+  }
+
+  cancel(){
+    this._home.addClicked = false
   }
 
 }

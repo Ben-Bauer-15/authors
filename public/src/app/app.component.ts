@@ -13,16 +13,6 @@ export class AppComponent {
   constructor(private _router : Router, private _httpService : HttpService){}
 
   ngOnInit(){
-    this._router.navigate(['/home'])
-    // this.getAllAuthors()
-    // this.allAuthors = []
+    this._router.navigate(['/movies'])
   }
-
-  // getAllAuthors(){
-  //   var self = this
-  //   let allAuthors = this._httpService.getAllAuthors()
-  //   allAuthors.subscribe(data => {
-  //     self.allAuthors = data.data
-  //   })
-  // }
 }
